@@ -5,66 +5,48 @@
 #                                                     +:+ +:+         +:+      #
 #    By: mcarton <mcarton@student.s19.be>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2025/03/24 19:19:52 by mcarton           #+#    #+#              #
-#    Updated: 2025/03/24 20:14:57 by mcarton          ###   ########.fr        #
+#    Created: 2025/03/24 20:17:36 by mcarton           #+#    #+#              #
+#    Updated: 2025/03/24 20:21:24 by mcarton          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-# Noms des programmes
-SERVER = server
-CLIENT = client
+SOURCES = server.c client.c
+OBJECTS = $(SOURCES:.c=.o)
 
-# Compilateur et flags
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 
-# Sources
-SERVER_SRC = server.c
-CLIENT_SRC = client.c
+all: server client
 
-# Objets
-SERVER_OBJ = $(SERVER_SRC:.c=.o)
-CLIENT_OBJ = $(CLIENT_SRC:.c=.o)
+bonus: server client
 
-# Libft
-LIBFT_DIR = ./libft
-LIBFT = $(LIBFT_DIR)/libft.a
-INCLUDES = -I$(LIBFT_DIR)
+server: server.o libs
+	$(CC) -o $@ $< -Llibft -lft -Lft_printf -lftprintf
 
-# ft_printf
-PRINTF_DIR = ./ft_printf
-PRINTF = $(PRINTF_DIR)/libftprintf.a
-INCLUDES += -I$(PRINTF_DIR)
-
-# Règles
-all: $(SERVER) $(CLIENT)
-
-$(LIBFT):
-	make -C $(LIBFT_DIR)
-
-$(PRINTF): $(LIBFT)
-	make -C $(PRINTF_DIR) LIBFT_PATH=$(LIBFT_DIR)
-
-$(SERVER): $(PRINTF) $(SERVER_OBJ)
-	$(CC) $(CFLAGS) $(SERVER_OBJ) -L$(PRINTF_DIR) -lftprintf -o $(SERVER)
-	chmod +x $(SERVER)
-
-$(CLIENT): $(PRINTF) $(CLIENT_OBJ)
-	$(CC) $(CFLAGS) $(CLIENT_OBJ) -L$(PRINTF_DIR) -lftprintf -o $(CLIENT)
-	chmod +x $(CLIENT)
+client: client.o libs
+	$(CC) -o $@ $< -Llibft -lft -Lft_printf -lftprintf
 
 %.o: %.c
-	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+	$(CC) -c $(CFLAGS) $?
+
+libs: libft ft_printf
+
+libft:
+	make -C libft
+
+ft_printf:
+	make -C ft_printf
 
 clean:
-	rm -f $(SERVER_OBJ) $(CLIENT_OBJ)
-	make -C $(PRINTF_DIR) clean
-
+	rm -f $(OBJECTS)
+	make -C libft clean
+	make -C ft_printf clean
+	
 fclean: clean
-	rm -f $(SERVER) $(CLIENT)
-	make -C $(LIBFT_DIR) fclean
-	make -C $(PRINTF_DIR) fclean
+	rm -f server client
+	make -C libft fclean
+	make -C ft_printf fclean
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all bonus libft ft_printf libs clean fclean re
