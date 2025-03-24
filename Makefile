@@ -6,7 +6,7 @@
 #    By: mcarton <mcarton@student.s19.be>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/24 19:19:52 by mcarton           #+#    #+#              #
-#    Updated: 2025/03/24 20:08:44 by mcarton          ###   ########.fr        #
+#    Updated: 2025/03/24 20:14:57 by mcarton          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,9 +47,11 @@ $(PRINTF): $(LIBFT)
 
 $(SERVER): $(PRINTF) $(SERVER_OBJ)
 	$(CC) $(CFLAGS) $(SERVER_OBJ) -L$(PRINTF_DIR) -lftprintf -o $(SERVER)
+	chmod +x $(SERVER)
 
 $(CLIENT): $(PRINTF) $(CLIENT_OBJ)
 	$(CC) $(CFLAGS) $(CLIENT_OBJ) -L$(PRINTF_DIR) -lftprintf -o $(CLIENT)
+	chmod +x $(CLIENT)
 
 %.o: %.c
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
