@@ -6,7 +6,7 @@
 /*   By: mcarton <mcarton@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 15:15:25 by mcarton           #+#    #+#             */
-/*   Updated: 2025/03/24 19:43:29 by mcarton          ###   ########.fr       */
+/*   Updated: 2025/03/24 19:53:06 by mcarton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,19 @@ int	main(int argc, char **argv)
 	pid_t pid;
 	pid = ft_atoi(argv[1]);
     send_message(pid, argv[2]);
-    send_message(pid, "\0");  // Envoi du caractère nul pour déclencher l'affichage
+    
+    // Envoi du caractère nul manuellement
+    int i = 7;
+    while (i >= 0)
+    {
+        if (kill(pid, SIGUSR1) == -1) // Caractère nul = tous les bits à 0
+        {
+            printf("Error KILL\n");
+            return (1);
+        }
+        usleep(50);
+        i--;
+    }
+    
     return (0);
 }

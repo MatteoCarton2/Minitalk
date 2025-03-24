@@ -6,7 +6,7 @@
 /*   By: mcarton <mcarton@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 15:15:27 by mcarton           #+#    #+#             */
-/*   Updated: 2025/03/24 19:47:21 by mcarton          ###   ########.fr       */
+/*   Updated: 2025/03/24 19:56:52 by mcarton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,20 +63,20 @@ static int init_server(void) {
 static void handle_signal (int sig) {
     if (sig == SIGUSR1) // = 0
     {
-        printf("Reçu SIGUSR1 (0) - Position bit: %d\n", g_server.char_bits);
-        g_server.c &= ~(1 << (7 - g_server.char_bits));
+        // printf("Reçu SIGUSR1 (0) - Position bit: %d\n", g_server.char_bits);
+        // g_server.c &= ~(1 << (7 - g_server.char_bits));
         g_server.char_bits++;
     }
     if (sig == SIGUSR2) // = 1
     {
-        printf("Reçu SIGUSR2 (1) - Position bit: %d\n", g_server.char_bits);
+        // printf("Reçu SIGUSR2 (1) - Position bit: %d\n", g_server.char_bits);
         g_server.c |= (1 << (7 - g_server.char_bits));
         g_server.char_bits++;
     }
         
     if (g_server.char_bits == 8)
     {
-        printf("Caractère complet reçu: %c (ASCII: %d)\n", g_server.c, g_server.c);
+        // printf("Caractère complet reçu: %c (ASCII: %d)\n", g_server.c, g_server.c);
         // on check si il y'a de la place avant de stocker un charactère
         if (check_memory() == 1)
             return;
@@ -85,13 +85,16 @@ static void handle_signal (int sig) {
         g_server.str[g_server.char_pos] = g_server.c;
         g_server.char_pos++;
         
-        // Si on reçoit le caractère nul, c'est la fin de la chaîne
+        // si on reçoit le caractère nul, c'est la fin de la chaîne
         if (g_server.c == '\0')
         {
+            // Debug pour confirmer réception du caractère nul
+            // printf("CARACTÈRE NUL DÉTECTÉ - FIN DE CHAÎNE!\n");
             // Afficher la chaîne complète
-            printf("Message reçu : %s\n", g_server.str);
-            
-            // Réinitialiser pour la prochaine chaîne
+            // printf("Message reçu : %s\n", g_server.str);
+            //printf("Longueur du message: %d caractères\n", g_server.char_pos - 1);
+            printf("%s\n", g_server.str);
+            // réinitialiser pour la prochaine chaîne
             g_server.char_pos = 0;
             free(g_server.str);
             init_server();
