@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mcarton <mcarton@student.42.fr>            +#+  +:+       +#+         #
+#    By: mcarton <mcarton@student.s19.be>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/16 13:13:54 by mcarton           #+#    #+#              #
-#    Updated: 2024/10/23 17:29:01 by mcarton          ###   ########.fr        #
+#    Updated: 2025/03/24 20:52:43 by mcarton          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,6 +46,13 @@ SRC = ft_isalpha.c \
 	ft_putstr_fd.c \
 	ft_putendl_fd.c \
 	ft_putnbr_fd.c \
+	ft_printf.c \
+	ft_char.c \
+	ft_hex.c \
+	ft_num.c \
+	ft_ptr.c \
+	ft_str.c \
+	ft_unsigned.c \
 
 SRC_BONUS = ft_lstnew_bonus.c \
 			ft_lstadd_front_bonus.c \

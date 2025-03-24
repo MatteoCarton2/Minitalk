@@ -6,7 +6,7 @@
 /*   By: mcarton <mcarton@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 15:15:36 by mcarton           #+#    #+#             */
-/*   Updated: 2025/03/24 20:05:41 by mcarton          ###   ########.fr       */
+/*   Updated: 2025/03/24 20:55:25 by mcarton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define MINITALK_H
 
 # include "./libft/libft.h"
-# include "./ft_printf/ft_printf.h"
 # include <signal.h>
 # include <unistd.h>
 # include <stdlib.h>

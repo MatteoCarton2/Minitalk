@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcarton <mcarton@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mcarton <mcarton@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 23:59:45 by mcarton           #+#    #+#             */
-/*   Updated: 2024/10/23 17:24:24 by mcarton          ###   ########.fr       */
+/*   Updated: 2024/12/03 15:20:56 by mcarton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	nbr_de_chiffre(int n)
+static int	num_length(int n)
 {
 	int	nbr;
 
@@ -29,35 +29,35 @@ static int	nbr_de_chiffre(int n)
 
 char	*ft_itoa(int n)
 {
-	int		longueur;
-	char	*resultat;
+	int		length;
+	char	*result;
 	long	nbr;
 
 	nbr = n;
-	longueur = nbr_de_chiffre(nbr);
-	resultat = ft_calloc(longueur + 1, sizeof(char));
-	if (!resultat)
+	length = num_length(nbr);
+	result = ft_calloc(length + 1, sizeof(char));
+	if (!result)
 		return (NULL);
 	if (nbr == 0)
-		resultat[0] = '0';
+		result[0] = '0';
 	if (nbr < 0)
 	{
-		resultat[0] = '-';
+		result[0] = '-';
 		nbr = -nbr;
 	}
 	while (nbr > 0)
 	{
-		resultat[--longueur] = (nbr % 10) + '0';
+		result[--length] = (nbr % 10) + '0';
 		nbr = nbr / 10;
 	}
-	return (resultat);
+	return (result);
 }
 /*
-int	main(void)
+int main(void)
 {
-	int	n;
+    int n;
 
-	n = -1234;
-	printf("%s\n", ft_itoa(n));
+    n = -1234;
+    printf("%s\n", ft_itoa(n));
 }
 */
