@@ -6,7 +6,7 @@
 /*   By: mcarton <mcarton@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 15:15:27 by mcarton           #+#    #+#             */
-/*   Updated: 2025/03/24 20:37:18 by mcarton          ###   ########.fr       */
+/*   Updated: 2025/03/24 22:14:28 by mcarton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,6 @@ static void handle_signal (int sig) {
             //printf("Longueur du message: %d caractères\n", g_server.char_pos - 1);
             ft_printf("%s\n", g_server.str);
             // réinitialiser pour la prochaine chaîne
-            g_server.char_pos = 0;
             free(g_server.str);
             init_server();
         }
