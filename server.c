@@ -6,7 +6,7 @@
 /*   By: mcarton <mcarton@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 15:15:27 by mcarton           #+#    #+#             */
-/*   Updated: 2025/03/24 19:56:52 by mcarton          ###   ########.fr       */
+/*   Updated: 2025/03/24 20:03:57 by mcarton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static int init_server(void) {
     g_server.str = malloc(sizeof(char) * 32);
     if (g_server.str == NULL)
     {
-        printf("Erreur malloc\n");
+        ft_printf("Erreur malloc\n");
         return (1);
     }
     g_server.char_bits = 0;
@@ -93,7 +93,7 @@ static void handle_signal (int sig) {
             // Afficher la chaîne complète
             // printf("Message reçu : %s\n", g_server.str);
             //printf("Longueur du message: %d caractères\n", g_server.char_pos - 1);
-            printf("%s\n", g_server.str);
+            ft_printf("%s\n", g_server.str);
             // réinitialiser pour la prochaine chaîne
             g_server.char_pos = 0;
             free(g_server.str);
@@ -106,7 +106,7 @@ static void handle_signal (int sig) {
 }
 
 int main() {
-    printf("Server PID = %d\n", getpid());
+    ft_printf("Server PID = %d\n", getpid());
     if (init_server() == 1)
         return (1);
     

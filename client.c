@@ -5,21 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mcarton <mcarton@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/24 15:15:25 by mcarton           #+#    #+#             */
-/*   Updated: 2025/03/24 19:53:06 by mcarton          ###   ########.fr       */
+/*   Created: 2025/03/24 20:06:53 by mcarton           #+#    #+#             */
+/*   Updated: 2025/03/24 20:11:07 by mcarton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
-
-// SIGUSR1 = 0
-// SIGUSR2 = 1
-
-// CHANGER TOUS LES PRINTF PAR FT_PRINTF !!!
-// CHANGER TOUS LES PRINTF PAR FT_PRINTF !!!
-// CHANGER TOUS LES PRINTF PAR FT_PRINTF !!!
-// CHANGER TOUS LES PRINTF PAR FT_PRINTF !!!
-// CHANGER TOUS LES PRINTF PAR FT_PRINTF !!!
 
 // SI j'enlève les if kill == -1 je dois changer int send_message par void et enlever le return 0 !!
 
@@ -47,7 +38,7 @@ int	send_message(pid_t pid, char *str)
             {
                 if (kill (pid, SIGUSR1) == -1) // kill = fct qui envoie un message
                 {
-                    printf ("Error KILL\n");
+                    ft_printf("Error KILL\n");
                     return (1);
                 }
             }
@@ -55,7 +46,7 @@ int	send_message(pid_t pid, char *str)
             {
                 if (kill (pid, SIGUSR2) == -1)
                 {
-                    printf ("Error KILL\n");
+                    ft_printf("Error KILL\n");
                     return (1);
                 }
             }
@@ -71,7 +62,7 @@ int	main(int argc, char **argv)
 {
 	if (argc != 3)
 	{
-		printf("Wrong numbers of arguments !\n"); // UTILISER MON PROPRE PRINTF
+		ft_printf("Wrong numbers of arguments !\n"); // UTILISER MON PROPRE PRINTF
 		return (1);
 	}
 	pid_t pid;
@@ -84,7 +75,7 @@ int	main(int argc, char **argv)
     {
         if (kill(pid, SIGUSR1) == -1) // Caractère nul = tous les bits à 0
         {
-            printf("Error KILL\n");
+            ft_printf("Error KILL\n");
             return (1);
         }
         usleep(50);
