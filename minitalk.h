@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mcarton <mcarton@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/24 15:15:36 by mcarton           #+#    #+#             */
-/*   Updated: 2025/03/24 22:12:47 by mcarton          ###   ########.fr       */
+/*   Created: 2025/03/24 22:53:26 by mcarton           #+#    #+#             */
+/*   Updated: 2025/03/25 10:44:47 by mcarton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,16 @@
 
 # include "./libft/libft.h"
 # include <signal.h>
-# include <unistd.h>
 # include <stdlib.h>
+# include <unistd.h>
 
-typedef struct s_server {
-    char    *str;       // La chaîne en cours de réception (allocation dynamique)
-    char    c;          // Le caractère en construction
-    int     char_bits;  // Bits reçus pour le caractère en cours (0-7)
-    int     char_pos;   // Position dans la chaîne
-    int     size;       // Taille totale allouée
-} t_server;
+typedef struct s_server
+{
+	char	*str;
+	char	c;
+	int		char_bits;
+	int		char_pos;
+	int		size;
+}			t_server;
 
 #endif
-

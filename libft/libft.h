@@ -6,20 +6,20 @@
 /*   By: mcarton <mcarton@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 01:05:10 by mcarton           #+#    #+#             */
-/*   Updated: 2025/03/24 20:56:32 by mcarton          ###   ########.fr       */
+/*   Updated: 2025/03/25 10:45:59 by mcarton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 
+# include <stdarg.h>
 # include <stddef.h>
 # include <stdint.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <string.h>
 # include <unistd.h>
-# include <stdarg.h>
 
 typedef struct s_list
 {
@@ -75,12 +75,12 @@ t_list				*ft_lstmap(t_list *lst, void *(*f)(void *),
 
 // printf
 
-int	ft_printf(const char *str, ...);
-int	ft_char(int c);
-int	ft_str(char *str);
-int	ft_num(int nbr);
-int	ft_ptr(void *ptr);
-int	ft_unsigned(unsigned int nbr);
-int	ft_hex(unsigned int nbr, char c);
+int					ft_printf(const char *str, ...);
+int					ft_char(int c);
+int					ft_str(char *str);
+int					ft_num(int nbr);
+int					ft_ptr(void *ptr);
+int					ft_unsigned(unsigned int nbr);
+int					ft_hex(unsigned int nbr, char c);
 
 #endif

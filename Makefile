@@ -5,41 +5,51 @@
 #                                                     +:+ +:+         +:+      #
 #    By: mcarton <mcarton@student.s19.be>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2025/03/24 20:17:36 by mcarton           #+#    #+#              #
-#    Updated: 2025/03/24 22:12:40 by mcarton          ###   ########.fr        #
+#    Created: 2025/03/25 10:45:40 by mcarton           #+#    #+#              #
+#    Updated: 2025/03/25 10:45:41 by mcarton          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SOURCES = server.c client.c
-OBJECTS = $(SOURCES:.c=.o)
 
-CC = gcc
+
+NAME_S = server
+NAME_C = client
+
+CC = cc
 CFLAGS = -Wall -Wextra -Werror
 
-all: server client
+SRC_S = server.c
+SRC_C = client.c
 
-bonus: server client
+OBJ_S = $(SRC_S:.c=.o)
+OBJ_C = $(SRC_C:.c=.o)
 
-server: server.o libft
-	$(CC) -o $@ $< -Llibft -lft
+LIBFT = libft/libft.a
 
-client: client.o libft
-	$(CC) -o $@ $< -Llibft -lft
+all: $(NAME_S) $(NAME_C)
+
+bonus: all
 
 %.o: %.c
-	$(CC) -c $(CFLAGS) $?
+	$(CC) $(CFLAGS) -c $< -o $@
 
-libft:
+$(LIBFT):
 	make -C libft
 
+$(NAME_S): $(OBJ_S) $(LIBFT)
+	$(CC) $(CFLAGS) $(OBJ_S) -o $@ -L libft -lft
+
+$(NAME_C): $(OBJ_C) $(LIBFT)
+	$(CC) $(CFLAGS) $(OBJ_C) -o $@ -L libft -lft
+
 clean:
-	rm -f $(OBJECTS)
+	rm -f $(OBJ_S) $(OBJ_C)
 	make -C libft clean
-	
+
 fclean: clean
-	rm -f server client
+	rm -f $(NAME_S) $(NAME_C)
 	make -C libft fclean
 
 re: fclean all
 
-.PHONY: all bonus libft clean fclean re
+.PHONY: all bonus clean fclean re
